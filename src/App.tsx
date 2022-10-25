@@ -1,34 +1,53 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import "./App.css";
 
-function App() {
-  const [count, setCount] = useState(0)
+import { ReactComponent as WaterDrop } from "./assets/droplet.svg";
+import { ReactComponent as Battery } from "./assets/battery-charging.svg";
+import fredianoLogo from "./assets/frediano.png";
 
-  return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  )
+interface CardProps {
+  title: string;
+  value: string | number;
+  icon: JSX.Element;
 }
 
-export default App
+const Card = ({ title, value, icon }: CardProps) => {
+  return (
+    <div className="bg-white rounded-lg drop-shadow-sm w-full flex flex-col py-3 px-4">
+      <span className="text-left text-lg font-semibold mb-1">{title}</span>
+      <div className="flex items-center">
+        {icon}
+        <span className="ml-4 text-4xl font-semibold">{value}</span>
+      </div>
+    </div>
+  );
+};
+
+function App() {
+  return (
+    <>
+      <header className="flex justify-between items-center mb-6">
+        <h1 className="font-bold text-3xl">Frediano</h1>
+        <div className="flex justify-center items-center">
+          <img className="w-20" src={fredianoLogo} alt="Frediano logo" />
+        </div>
+      </header>
+
+      <div className="flex gap-2 justify-between">
+        <Card
+          title="Water"
+          value="59%"
+          icon={
+            <WaterDrop className="fill-blue-100 stroke-blue-500 h-12 w-12" />
+          }
+        />
+        <Card
+          title="Battery"
+          value="39%"
+          icon={<Battery className="stroke-green-300 h-12 w-12" />}
+        />
+      </div>
+    </>
+  );
+}
+
+export default App;
