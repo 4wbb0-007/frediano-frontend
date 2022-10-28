@@ -1,6 +1,5 @@
 #root {
-  max-width: 1280px;
+  @apply container mx-auto p-4;
   margin: 0 auto;
-  padding: 1rem 1rem;
-  text-align: center;
 }
+o
